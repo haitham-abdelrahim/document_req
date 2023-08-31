@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Document Request</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Document Type</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
+                    <th>Definition</th>
+                    <th>Language</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let doc of docs) { %>
+                    <tr>
+                        <td>
+                            <%= doc.category %>
+                        </td>
+                        <td>
+                            <%= doc.number_of_doc %>
+                        </td>
+                        <td>
+                            <%= doc.requestDate.toLocaleDateString() %>
+                        </td>
+                        <td>
+                            <%= doc.definition %>
+                        </td>
+                        <td>
+                            <%= doc.language %>
+                        </td>
+                        <td>
+                            <form action="/doc/<%= doc._id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+        <div class="text-right">
+            <button class="btn btn-primary" onclick="window.location.href = '/doc/new'">Add</button>
+        </div>
+    </div>
+</body>
+
+</html>
